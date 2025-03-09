@@ -1,4 +1,5 @@
 using eTickets.Data;
+using eTickets.Data.Cart;
 using eTickets.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,13 @@ services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString")));
 //services Configuration
 services.AddScoped<IActorsService, ActorsService>();
+services.AddScoped<IProducersService, ProducersService>();
+services.AddScoped<ICinemasService, CinemasService >();
+services.AddScoped<IMoviesService, MoviesService>();   
+
+services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+services.AddSession();
 
 builder.Services.AddControllersWithViews();
 
@@ -29,6 +37,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 

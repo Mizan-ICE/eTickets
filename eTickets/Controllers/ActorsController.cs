@@ -35,7 +35,7 @@ namespace eTickets.Controllers
             { 
              return View(actor);
             } 
-            await _service.UpdateAsync(actor);
+            await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> Details(int id)

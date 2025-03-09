@@ -72,22 +72,22 @@ namespace eTickets.Migrations
                     CinemaId = table.Column<int>(type: "int", nullable: false),
                     ProducerId = table.Column<int>(type: "int", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Movies", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Movies_Cinemas_CinemaId",
-                        column: x => x.CinemaId,
-                        principalTable: "Cinemas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Movies_Producers_ProducerId",
-                        column: x => x.ProducerId,
-                        principalTable: "Producers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            constraints: table =>
+            {
+                table.PrimaryKey("PK_Movies", x => x.Id);
+                table.ForeignKey(
+                    name: "FK_Movies_Cinemas_CinemaId",
+                    column: x => x.CinemaId,
+                    principalTable: "Cinemas",
+                    principalColumn: "Id",
+                    onDelete: ReferentialAction.Cascade);
+                table.ForeignKey(
+                    name: "FK_Movies_Producers_ProducerId",
+                    column: x => x.ProducerId,
+                    principalTable: "Producers",
+                    principalColumn: "Id",
+                    onDelete: ReferentialAction.Cascade);
+            });
 
             migrationBuilder.CreateTable(
                 name: "Actors_Movies",
@@ -98,27 +98,27 @@ namespace eTickets.Migrations
                     Actor_MovieActorId = table.Column<int>(type: "int", nullable: true),
                     Actor_MovieMovieId = table.Column<int>(type: "int", nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Actors_Movies", x => new { x.ActorId, x.MovieId });
-                    table.ForeignKey(
-                        name: "FK_Actors_Movies_Actors_ActorId",
-                        column: x => x.ActorId,
-                        principalTable: "Actors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Actors_Movies_Actors_Movies_Actor_MovieActorId_Actor_MovieMovieId",
-                        columns: x => new { x.Actor_MovieActorId, x.Actor_MovieMovieId },
-                        principalTable: "Actors_Movies",
-                        principalColumns: new[] { "ActorId", "MovieId" });
-                    table.ForeignKey(
-                        name: "FK_Actors_Movies_Movies_MovieId",
-                        column: x => x.MovieId,
-                        principalTable: "Movies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            constraints: table =>
+            {
+                table.PrimaryKey("PK_Actors_Movies", x => new { x.ActorId, x.MovieId });
+                table.ForeignKey(
+                                name: "FK_Actors_Movies_Actors_ActorId",
+                                column: x => x.ActorId,
+                                principalTable: "Actors",
+                                principalColumn: "Id",
+                                onDelete: ReferentialAction.Cascade);
+                table.ForeignKey(
+                    name: "FK_Actors_Movies_Actors_Movies_Actor_MovieActorId_Actor_MovieMovieId",
+                    columns: x => new { x.Actor_MovieActorId, x.Actor_MovieMovieId },
+                    principalTable: "Actors_Movies",
+                    principalColumns: new[] { "ActorId", "MovieId" });
+                table.ForeignKey(
+                    name: "FK_Actors_Movies_Movies_MovieId",
+                    column: x => x.MovieId,
+                    principalTable: "Movies",
+                    principalColumn: "Id",
+                    onDelete: ReferentialAction.Cascade);
+            });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Actors_Movies_Actor_MovieActorId_Actor_MovieMovieId",
@@ -141,8 +141,8 @@ namespace eTickets.Migrations
                 column: "ProducerId");
         }
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
+                    // <inheritdoc />
+                    protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Actors_Movies");
@@ -161,3 +161,4 @@ namespace eTickets.Migrations
         }
     }
 }
+    

@@ -1,59 +1,68 @@
 ﻿@model Actor
 
 @{
-    ViewData["Title"] = "Update actor";
+    ViewData["Title"] = "Update Actor";
 }
 
-<div class="row text">
-    <div class="col-md-8 offset-2">
-        <p>
-            <h1>Update Actor</h1>
-        </p>
-        <div class="row">
-            <div class="col-md-8 offset-2">
-                <form asp-action="Edit">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <h2 class="text-center mb-4">Update Actor</h2>
 
-                    <div class="form-group text-center">
-                        <img id="ProfilePicturePreview"  class="border-info rounded-circle" style="max-width: 150px" />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ProfilePictureURL" class="control-label"></label>
-                        <input asp-for="ProfilePictureURL" class="form-control" />
-                        <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="FullName" class="control-label"></label>
-                        <input asp-for="FullName" class="form-control" />
-                        <span asp-validation-for="FullName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Bio" class="control-label"></label>
-                        <input asp-for="Bio" class="form-control" />
-                        <span asp-validation-for="Bio" class="text-danger"></span>
-                    </div>
+        <div class="card shadow p-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-                    <div class="form-group">
-                        <input type="submit" value="Update" class="btn btn-outline-success float-right" />
-                        <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
-                    </div>
-                </form>
-            </div>
+                <div class="text-center mb-3">
+                    <img id="ProfilePicturePreview" class="border border-info rounded-circle img-thumbnail"
+                         style="max-width: 120px; height: 120px; object-fit: cover;" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ProfilePictureURL" class="form-label fw-bold"></label>
+                    <input asp-for="ProfilePictureURL" class="form-control" />
+                    <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="FullName" class="form-label fw-bold"></label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+              
+                <div class="mb-3">
+                    <label asp-for="Bio" class="form-label fw-bold"></label>
+                    <textarea asp-for="Bio" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Bio" class="text-danger"></span>
+                </div>
+
+              
+                <div class="d-flex justify-content-between">
+                    <a class="btn btn-outline-secondary" asp-action="Index">
+                        <i class="bi bi-list"></i> Show All
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-check-circle"></i> Update
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
-@section Scripts{ 
+@section Scripts {
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let output = document.getElementById("ProfilePicturePreview");
+            let input = document.getElementById("ProfilePictureURL");
 
-        $(document).ready(function () {
-            var output = document.getElementById('ProfilePicturePreview');
-            output.src = $("#ProfilePictureURL").val();
-        })
+           
+            output.src = input.value;
 
-        $("#ProfilePictureURL").on("change", function () {
-            var output = document.getElementById('ProfilePicturePreview');
-            output.src = $(this).val();
-        })
+         
+            input.addEventListener("input", function () {
+                output.src = input.value;
+            });
+        });
     </script>
 }
