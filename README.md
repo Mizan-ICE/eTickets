@@ -10,5 +10,6 @@ This is an ecommerce web application build
 - Entity Framework migrations
 - Adding, Getting, Updating and Deleting data from an SQL database using Entity Framework
 - Working with relational and non-relational data
+- Repository pattern
 - Dependency injection and Logger Configuration 
 - Model binding and validation 
